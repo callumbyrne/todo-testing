@@ -1,8 +1,9 @@
 import config from "config";
 import { Request, Response } from "express";
 import { signJwt } from "../../utils/jwt";
+import logger from "../../utils/logger";
 import { validatePassword } from "../user/user.service";
-import { createSession } from "./session.service";
+import { createSession, findSessions, updateSession } from "./session.service";
 
 export const createUserSessionHandler = async (req: Request, res: Response) => {
     // Validate users password
@@ -43,4 +44,36 @@ export const createUserSessionHandler = async (req: Request, res: Response) => {
     });
     // Return access and refresh tokens
     return res.status(201).send({ accessToken, refreshToken });
+};
+
+export const getUserSessionHandler = async (_req: Request, res: Response) => {
+    try {
+        const userId = res.locals.user._id;
+        const sessions = await findSessions({ user: userId, valid: true });
+
+        return res.status(200).send(sessions);
+    } catch (error) {
+        logger.error(error);
+        return res.status(500).json({ error });
+    }
+};
+
+export const deleteUserSessionHandler = async (
+    _req: Request,
+    res: Response
+) => {
+    try {
+        const sessionId = res.locals.user.session;
+        const updatedSession = await updateSession(
+            { _id: sessionId },
+            { valid: false }
+        );
+
+        return updatedSession
+            ? res.status(200).send({ accessToken: null, refreshToken: null })
+            : res.status(404).json({ message: "Not found" });
+    } catch (error) {
+        logger.error(error);
+        return res.status(500).json({ error });
+    }
 };
