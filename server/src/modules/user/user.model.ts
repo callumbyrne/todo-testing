@@ -8,6 +8,12 @@ export interface UserInput {
     password: string;
 }
 
+export interface UserDocument extends UserInput, mongoose.Document {
+    createdAt: Date;
+    updatedAt: Date;
+    comparePassword(givenPassword: string): Promise<boolean>;
+}
+
 const userSchema = new mongoose.Schema(
     {
         email: { type: String, required: true, unique: true },
@@ -34,6 +40,14 @@ userSchema.pre("save", async function (next) {
     return next();
 });
 
-const UserModel = mongoose.model("User", userSchema);
+userSchema.methods.comparePassword = async function (
+    givenPassword: string
+): Promise<boolean> {
+    const user = this as UserDocument;
+
+    return bcrypt.compare(givenPassword, user.password).catch((_e) => false);
+};
+
+const UserModel = mongoose.model<UserDocument>("User", userSchema);
 
 export default UserModel;
