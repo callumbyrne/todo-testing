@@ -1,17 +1,20 @@
 import express from "express";
 import logger from "./utils/logger";
 
+import userRouter from "./modules/user/user.route";
+
 const app = express();
 
 app.use(express.json());
 
 // Routes
+app.use("/api/users", userRouter);
 
 // Health check
-app.get("/ping", (req, res, next) => res.status(200).json({ message: "pong" }));
+app.get("/ping", (_req, res) => res.status(200).json({ message: "pong" }));
 
 // Error handling
-app.use((req, res, next) => {
+app.use((_req, res) => {
     const error = new Error("Not found");
     logger.error(error);
 
