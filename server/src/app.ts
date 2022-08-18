@@ -8,6 +8,8 @@ import cookieParser from "cookie-parser";
 
 import userRouter from "./modules/user/user.route";
 import sessionRouter from "./modules/session/session.route";
+import requireUser from "./middleware/requireUser";
+import { getCurrentUser } from "./modules/user/user.controller";
 
 const app = express();
 
@@ -23,6 +25,9 @@ app.use(cookieParser());
 // Routes
 app.use("/api/users", userRouter);
 app.use("/api/sessions", sessionRouter);
+
+// Current user
+app.get("/api/me", requireUser, getCurrentUser);
 
 // Health check
 app.get("/ping", (_req, res) => res.status(200).json({ message: "pong" }));
