@@ -29,11 +29,11 @@ const Home = () => {
     console.log(user);
 
     if (!user) {
-        return <div>Please login</div>;
+        return <div>Login or Sign up to see your todos!</div>;
     }
     return (
-        <div>
-            <div>Welcome! {user.name}</div>
+        <div className='flex justify-center'>
+            <div className='max-w-5xl w-full border'>Welcome! {user.name}</div>
         </div>
     );
 };

@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <div className='flex justify-center'>
-            <nav className='max-w-5xl w-full border py-5 border-black flex justify-center relative'>
+        <div className='flex justify-center border-y'>
+            <nav className='max-w-5xl w-full py-5 flex justify-center relative'>
                 <Link to={"/"}>
-                    <div className='font-extrabold text-3xl tracking-wide'>
+                    <div className='font-bold text-3xl tracking-wide'>
                         Todo App
                     </div>
                 </Link>
