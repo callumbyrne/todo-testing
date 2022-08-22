@@ -5,6 +5,8 @@ import { ErrorMessage } from "@hookform/error-message";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import getCurrentUser from "../utils/getCurrentUser";
+import { User } from "../typeings";
 
 export const createSessionSchema = object({
     email: string().min(1, { message: "Email is required" }),
@@ -13,7 +15,11 @@ export const createSessionSchema = object({
 
 type CreateSessionInput = TypeOf<typeof createSessionSchema>;
 
-const Login = () => {
+const Login = ({
+    setUser,
+}: {
+    setUser: React.Dispatch<React.SetStateAction<User | null>>;
+}) => {
     const [loginError, setLoginError] = useState(null);
 
     const navigate = useNavigate();
@@ -31,6 +37,7 @@ const Login = () => {
             await axios.post("http://localhost:1337/api/sessions", values, {
                 withCredentials: true,
             });
+            getCurrentUser(setUser);
             navigate("/", { replace: true });
         } catch (error: any) {
             setLoginError(error.message);
