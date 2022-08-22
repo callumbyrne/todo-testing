@@ -14,6 +14,10 @@ export const findSessions = async (query: FilterQuery<SessionDocument>) => {
     return SessionModel.find(query).lean();
 };
 
+export const findSession = async (query: FilterQuery<SessionDocument>) => {
+    return SessionModel.findOne(query).lean();
+};
+
 export const updateSession = async (
     query: FilterQuery<SessionDocument>,
     update: UpdateQuery<SessionDocument>

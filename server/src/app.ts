@@ -9,7 +9,7 @@ import cookieParser from "cookie-parser";
 import userRouter from "./modules/user/user.route";
 import sessionRouter from "./modules/session/session.route";
 import requireUser from "./middleware/requireUser";
-import { getCurrentUser } from "./modules/user/user.controller";
+import { getCurrentUser } from "./modules/session/session.controller";
 
 const app = express();
 

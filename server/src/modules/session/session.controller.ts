@@ -3,7 +3,12 @@ import { Request, Response } from "express";
 import { signJwt } from "../../utils/jwt";
 import logger from "../../utils/logger";
 import { validatePassword } from "../user/user.service";
-import { createSession, findSessions, updateSession } from "./session.service";
+import {
+    createSession,
+    findSession,
+    findSessions,
+    updateSession,
+} from "./session.service";
 
 export const createUserSessionHandler = async (req: Request, res: Response) => {
     // Validate users password
@@ -76,4 +81,17 @@ export const deleteUserSessionHandler = async (
         logger.error(error);
         return res.status(500).json({ error });
     }
+};
+
+export const getCurrentUser = async (_req: Request, res: Response) => {
+    const sessionId = res.locals.user.session;
+    const currentSession = await findSession({ _id: sessionId });
+
+    if (!currentSession) return res.status(204);
+
+    if (!currentSession.valid) {
+        return res.status(204).send(null);
+    }
+
+    return res.send(res.locals.user);
 };
