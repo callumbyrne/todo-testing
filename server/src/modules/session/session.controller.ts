@@ -2,7 +2,7 @@ import config from "config";
 import { Request, Response } from "express";
 import { signJwt } from "../../utils/jwt";
 import logger from "../../utils/logger";
-import { validatePassword } from "../user/user.service";
+import { findUser, validatePassword } from "../user/user.service";
 import {
     createSession,
     findSession,
@@ -87,11 +87,11 @@ export const getCurrentUser = async (_req: Request, res: Response) => {
     const sessionId = res.locals.user.session;
     const currentSession = await findSession({ _id: sessionId });
 
-    if (!currentSession) return res.status(204);
-
-    if (!currentSession.valid) {
+    if (!currentSession || !currentSession.valid) {
         return res.status(204).send(null);
     }
 
-    return res.send(res.locals.user);
+    const user = await findUser({ _id: currentSession.user });
+
+    return res.send(user);
 };
