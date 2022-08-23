@@ -33,5 +33,5 @@ export const validatePassword = async ({
 };
 
 export const findUser = (query: FilterQuery<UserDocument>) => {
-    return UserModel.findOne(query).lean();
+    return UserModel.findOne(query).populate("todos").lean();
 };

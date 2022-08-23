@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 
 import userRouter from "./modules/user/user.route";
 import sessionRouter from "./modules/session/session.route";
+import todoRouter from "./modules/todo/todo.route";
 import requireUser from "./middleware/requireUser";
 import { getCurrentUser } from "./modules/session/session.controller";
 
@@ -26,6 +27,7 @@ app.use(deserializeUser);
 // Routes
 app.use("/api/users", userRouter);
 app.use("/api/sessions", sessionRouter);
+app.use("/api/todos", todoRouter);
 
 // Current user
 app.get("/api/me", requireUser, getCurrentUser);

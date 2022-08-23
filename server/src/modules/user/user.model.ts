@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import config from "config";
+import { TodoDocument } from "../todo/todo.model";
 
 export interface UserInput {
     email: string;
@@ -11,6 +12,7 @@ export interface UserInput {
 export interface UserDocument extends UserInput, mongoose.Document {
     createdAt: Date;
     updatedAt: Date;
+    todos: TodoDocument["_id"][];
     comparePassword(givenPassword: string): Promise<boolean>;
 }
 
@@ -19,6 +21,12 @@ const userSchema = new mongoose.Schema(
         email: { type: String, required: true, unique: true },
         name: { type: String, required: true },
         password: { type: String, required: true },
+        todos: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Todo",
+            },
+        ],
     },
     {
         timestamps: true,
