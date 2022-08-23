@@ -30,7 +30,7 @@ const Navbar = ({
                     <div className='absolute right-0'>
                         <button
                             onClick={handleLogout}
-                            className='py-2 px-10 bg-red-500 text-white font-bold rounded-md'>
+                            className='py-2 px-10 text-red-500 font-bold border border-red-500 rounded-md'>
                             Logout
                         </button>
                     </div>

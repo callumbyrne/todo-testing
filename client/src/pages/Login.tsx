@@ -46,7 +46,7 @@ const Login = ({
 
     return (
         <div className='flex items-center flex-col'>
-            <div className='max-w-5xl mt-10 mb-3 font-bold text-2xl'>Login</div>
+            <h2 className='max-w-5xl mt-10 mb-3 font-bold text-2xl'>Login</h2>
             <div className='form-container max-w-lg w-full border rounded-lg p-10'>
                 <p>{loginError}</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
