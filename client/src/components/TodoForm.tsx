@@ -24,6 +24,7 @@ const TodoForm = ({ setUser }: TodoFormProps) => {
         register,
         formState: { errors },
         handleSubmit,
+        reset,
     } = useForm<CreateTodoInput>({
         resolver: zodResolver(createTodoSchema),
     });
@@ -34,6 +35,7 @@ const TodoForm = ({ setUser }: TodoFormProps) => {
                 withCredentials: true,
             });
             setUser(await getCurrentUser());
+            reset();
         } catch (error: any) {
             setTodoError(error.message);
         }
