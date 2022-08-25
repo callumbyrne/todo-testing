@@ -1,16 +1,18 @@
-import { ITodo } from "../typeings";
+import { ITodo, User } from "../typeings";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon as CheckCircleIconSolid } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import axios from "axios";
+import getCurrentUser from "../utils/getCurrentUser";
 
 interface TodoProps {
     todo: ITodo;
-    allTodos: ITodo[];
-    setTodos: React.Dispatch<React.SetStateAction<ITodo[]>>;
+    setUser: React.Dispatch<React.SetStateAction<User | null>>;
+    // allTodos: ITodo[];
+    // setTodos: React.Dispatch<React.SetStateAction<ITodo[]>>;
 }
 
-const Todo = ({ todo, allTodos, setTodos }: TodoProps) => {
+const Todo = ({ todo, setUser }: TodoProps) => {
     const [completed, setCompleted] = useState(todo.completed);
 
     const date = String(todo.createdAt).slice(0, 10);
@@ -27,7 +29,8 @@ const Todo = ({ todo, allTodos, setTodos }: TodoProps) => {
         await axios.delete(`http://localhost:1337/api/todos/${todo._id}`, {
             withCredentials: true,
         });
-        setTodos(allTodos.filter((t) => t._id !== todo._id));
+        // setTodos(allTodos.filter((t) => t._id !== todo._id));
+        setUser(await getCurrentUser());
     };
 
     return (

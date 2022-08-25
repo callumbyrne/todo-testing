@@ -33,7 +33,7 @@ const TodoForm = ({ setUser }: TodoFormProps) => {
             await axios.post("http://localhost:1337/api/todos", values, {
                 withCredentials: true,
             });
-            getCurrentUser(setUser);
+            setUser(await getCurrentUser());
         } catch (error: any) {
             setTodoError(error.message);
         }

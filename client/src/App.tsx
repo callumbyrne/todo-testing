@@ -11,7 +11,10 @@ import getCurrentUser from "./utils/getCurrentUser";
 function App() {
     const [user, setUser] = useState<User | null>(null);
     useEffect(() => {
-        getCurrentUser(setUser);
+        const getUser = async () => {
+            setUser(await getCurrentUser());
+        };
+        getUser();
     }, []);
     console.log(user);
 
