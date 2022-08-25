@@ -33,3 +33,7 @@ export const findAndUpdateTodo = (
 ) => {
     return TodoModel.findOneAndUpdate(query, update, options);
 };
+
+export const deleteTodo = (query: FilterQuery<TodoDocument>) => {
+    return TodoModel.deleteOne(query);
+};

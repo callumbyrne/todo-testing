@@ -1,5 +1,10 @@
 import { Request, Response } from "express";
-import { createTodo, findAndUpdateTodo, findTodo } from "./todo.service";
+import {
+    createTodo,
+    deleteTodo,
+    findAndUpdateTodo,
+    findTodo,
+} from "./todo.service";
 import logger from "../../utils/logger";
 
 export const createTodoHandler = async (req: Request, res: Response) => {
@@ -42,5 +47,29 @@ export const updateTodoHandler = async (req: Request, res: Response) => {
     } catch (error) {
         logger.error(error);
         return res.status(500).json({ message: error });
+    }
+};
+
+export const deleteTodoHandler = async (req: Request, res: Response) => {
+    try {
+        const userId = res.locals.user._id;
+        const todoId = req.params.todoId;
+
+        const todo = await findTodo({ _id: todoId });
+
+        if (!todo) {
+            return res.sendStatus(404);
+        }
+
+        if (String(todo.user) !== userId) {
+            return res.sendStatus(403);
+        }
+
+        await deleteTodo({ _id: todoId });
+
+        return res.status(201).json({ message: "Deleted" });
+    } catch (error) {
+        logger.error(error);
+        return res.status(500).json({ error });
     }
 };

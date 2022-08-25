@@ -2,6 +2,7 @@ import { User } from "../typeings";
 import { Link } from "react-router-dom";
 import TodoForm from "../components/TodoForm";
 import Todo from "../components/Todo";
+import { useState } from "react";
 
 interface HomeProps {
     user: User | null;
@@ -28,7 +29,7 @@ const Home = ({ user, setUser }: HomeProps) => {
         );
     }
 
-    const todos = user.todos;
+    const [todos, setTodos] = useState(user.todos);
 
     return (
         <div className='flex items-center flex-col'>
@@ -38,7 +39,12 @@ const Home = ({ user, setUser }: HomeProps) => {
             <TodoForm setUser={setUser} />
             <div className='todos-container max-w-5xl w-full border rounded-lg p-10'>
                 {todos.map((todo) => (
-                    <Todo todo={todo} key={todo._id} />
+                    <Todo
+                        todo={todo}
+                        key={todo._id}
+                        setTodos={setTodos}
+                        allTodos={todos}
+                    />
                 ))}
             </div>
         </div>

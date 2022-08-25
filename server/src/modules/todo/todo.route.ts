@@ -1,8 +1,16 @@
 import express from "express";
 import requireUser from "../../middleware/requireUser";
 import validateResource from "../../middleware/validateResource";
-import { createTodoHandler, updateTodoHandler } from "./todo.controller";
-import { createTodoSchema, updateTodoSchema } from "./todo.schema";
+import {
+    createTodoHandler,
+    deleteTodoHandler,
+    updateTodoHandler,
+} from "./todo.controller";
+import {
+    createTodoSchema,
+    deleteTodoSchema,
+    updateTodoSchema,
+} from "./todo.schema";
 
 const router = express.Router();
 
@@ -18,6 +26,13 @@ router.put(
     requireUser,
     validateResource(updateTodoSchema),
     updateTodoHandler
+);
+
+router.delete(
+    "/:todoId",
+    requireUser,
+    validateResource(deleteTodoSchema),
+    deleteTodoHandler
 );
 
 export = router;

@@ -28,3 +28,7 @@ export const updateTodoSchema = object({
     }),
     ...params,
 });
+
+export const deleteTodoSchema = object({
+    ...params,
+});
