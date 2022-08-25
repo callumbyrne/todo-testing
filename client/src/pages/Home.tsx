@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { User } from "../typeings";
 import { Link } from "react-router-dom";
 import TodoForm from "../components/TodoForm";
@@ -34,7 +32,7 @@ const Home = ({ user, setUser }: HomeProps) => {
 
     return (
         <div className='flex items-center flex-col'>
-            <h2 className='max-w-5xl mt-10 mb-3 font-bold text-2xl'>
+            <h2 className='max-w-5xl my-10 font-bold text-2xl'>
                 Welcome, {user.name}
             </h2>
             <TodoForm setUser={setUser} />

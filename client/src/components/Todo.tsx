@@ -2,14 +2,19 @@ import { ITodo } from "../typeings";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon as CheckCircleIconSolid } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import axios from "axios";
 
 const Todo = ({ todo }: { todo: ITodo }) => {
     const [completed, setCompleted] = useState(todo.completed);
 
     const date = String(todo.createdAt).slice(0, 10);
 
-    const completedHandler = () => {
-        setCompleted(!completed);
+    const completedHandler = async () => {
+        let update = { completed: !completed };
+        await axios.put(`http://localhost:1337/api/todos/${todo._id}`, update, {
+            withCredentials: true,
+        });
+        return setCompleted(!completed);
     };
 
     return (
