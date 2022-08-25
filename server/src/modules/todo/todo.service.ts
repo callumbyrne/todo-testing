@@ -1,5 +1,6 @@
-import TodoModel from "./todo.model";
+import TodoModel, { TodoDocument } from "./todo.model";
 import UserModel from "../user/user.model";
+import { FilterQuery, QueryOptions, UpdateQuery } from "mongoose";
 
 export const createTodo = async (userId: string, content: string) => {
     try {
@@ -16,4 +17,19 @@ export const createTodo = async (userId: string, content: string) => {
     } catch (error: any) {
         throw new Error(error);
     }
+};
+
+export const findTodo = (
+    query: FilterQuery<TodoDocument>,
+    options: QueryOptions = { lean: true }
+) => {
+    return TodoModel.findOne(query, {}, options);
+};
+
+export const findAndUpdateTodo = (
+    query: FilterQuery<TodoDocument>,
+    update: UpdateQuery<TodoDocument>,
+    options: QueryOptions
+) => {
+    return TodoModel.findOneAndUpdate(query, update, options);
 };
