@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import {
     createTodo,
     deleteTodo,
+    findAllTodos,
     findAndUpdateTodo,
     findTodo,
 } from "./todo.service";
@@ -68,6 +69,17 @@ export const deleteTodoHandler = async (req: Request, res: Response) => {
         await deleteTodo({ _id: todoId });
 
         return res.status(201).json({ message: "Deleted" });
+    } catch (error) {
+        logger.error(error);
+        return res.status(500).json({ error });
+    }
+};
+
+export const getAllTodosHandler = async (_req: Request, res: Response) => {
+    try {
+        const userId = res.locals.user._id;
+        const todos = await findAllTodos({ user: userId });
+        return res.status(200).send(todos);
     } catch (error) {
         logger.error(error);
         return res.status(500).json({ error });

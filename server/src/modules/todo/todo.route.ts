@@ -4,6 +4,7 @@ import validateResource from "../../middleware/validateResource";
 import {
     createTodoHandler,
     deleteTodoHandler,
+    getAllTodosHandler,
     updateTodoHandler,
 } from "./todo.controller";
 import {
@@ -34,5 +35,7 @@ router.delete(
     validateResource(deleteTodoSchema),
     deleteTodoHandler
 );
+
+router.get("/", requireUser, getAllTodosHandler);
 
 export = router;
