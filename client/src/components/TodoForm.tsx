@@ -5,7 +5,7 @@ import axios from "axios";
 import { ErrorMessage } from "@hookform/error-message";
 import { useState } from "react";
 import getCurrentUser from "../utils/getCurrentUser";
-import { User } from "../typeings";
+import { ITodo, User } from "../typeings";
 
 const createTodoSchema = object({
     content: string().min(1, { message: "Cannot be empty" }),
@@ -14,10 +14,10 @@ const createTodoSchema = object({
 type CreateTodoInput = TypeOf<typeof createTodoSchema>;
 
 interface TodoFormProps {
-    setUser: React.Dispatch<React.SetStateAction<User | null>>;
+    setTodos: React.Dispatch<React.SetStateAction<ITodo[]>>;
 }
 
-const TodoForm = ({ setUser }: TodoFormProps) => {
+const TodoForm = ({ setTodos }: TodoFormProps) => {
     const [todoError, setTodoError] = useState(null);
 
     const {
@@ -31,10 +31,14 @@ const TodoForm = ({ setUser }: TodoFormProps) => {
 
     const onSubmit = async (values: CreateTodoInput) => {
         try {
-            await axios.post("http://localhost:1337/api/todos", values, {
-                withCredentials: true,
-            });
-            setUser(await getCurrentUser());
+            const { data } = await axios.post(
+                "http://localhost:1337/api/todos",
+                values,
+                {
+                    withCredentials: true,
+                }
+            );
+            setTodos((todos) => todos.concat(data));
             reset();
         } catch (error: any) {
             setTodoError(error.message);

@@ -7,12 +7,10 @@ import getCurrentUser from "../utils/getCurrentUser";
 
 interface TodoProps {
     todo: ITodo;
-    setUser: React.Dispatch<React.SetStateAction<User | null>>;
-    // allTodos: ITodo[];
-    // setTodos: React.Dispatch<React.SetStateAction<ITodo[]>>;
+    setTodos: React.Dispatch<React.SetStateAction<ITodo[]>>;
 }
 
-const Todo = ({ todo, setUser }: TodoProps) => {
+const Todo = ({ todo, setTodos }: TodoProps) => {
     const [completed, setCompleted] = useState(todo.completed);
 
     const date = String(todo.createdAt).slice(0, 10);
@@ -29,8 +27,7 @@ const Todo = ({ todo, setUser }: TodoProps) => {
         await axios.delete(`http://localhost:1337/api/todos/${todo._id}`, {
             withCredentials: true,
         });
-        // setTodos(allTodos.filter((t) => t._id !== todo._id));
-        setUser(await getCurrentUser());
+        setTodos((todos) => todos.filter((t) => t._id !== todo._id));
     };
 
     return (

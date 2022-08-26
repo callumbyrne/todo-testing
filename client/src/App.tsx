@@ -22,10 +22,7 @@ function App() {
         <div className='font-Noto'>
             <Navbar user={user} setUser={setUser} />
             <Routes>
-                <Route
-                    path='/'
-                    element={<Home user={user} setUser={setUser} />}
-                />
+                <Route path='/' element={<Home user={user} />} />
                 <Route path='login' element={<Login setUser={setUser} />} />
                 <Route path='signup' element={<SignUp />} />
             </Routes>

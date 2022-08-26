@@ -3,13 +3,27 @@ import { Link } from "react-router-dom";
 import TodoForm from "../components/TodoForm";
 import Todo from "../components/Todo";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface HomeProps {
     user: User | null;
-    setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
-const Home = ({ user, setUser }: HomeProps) => {
+const Home = ({ user }: HomeProps) => {
+    const [todos, setTodos] = useState<ITodo[]>([]);
+
+    useEffect(() => {
+        const getTodos = async () => {
+            const { data } = await axios.get(
+                "http://localhost:1337/api/todos",
+                { withCredentials: true }
+            );
+            setTodos(data);
+        };
+
+        getTodos();
+    }, []);
+
     if (!user) {
         return (
             <div className='flex justify-center'>
@@ -34,10 +48,10 @@ const Home = ({ user, setUser }: HomeProps) => {
             <h2 className='max-w-5xl my-10 font-bold text-2xl'>
                 Welcome, {user.name}
             </h2>
-            <TodoForm setUser={setUser} />
+            <TodoForm setTodos={setTodos} />
             <div className='todos-container max-w-5xl w-full border rounded-lg p-10'>
-                {user.todos.map((todo) => (
-                    <Todo todo={todo} key={todo._id} setUser={setUser} />
+                {todos.map((todo) => (
+                    <Todo todo={todo} key={todo._id} setTodos={setTodos} />
                 ))}
             </div>
         </div>
