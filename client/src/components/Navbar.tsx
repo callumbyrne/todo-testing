@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { User } from "../typeings";
-import getCurrentUser from "../utils/getCurrentUser";
 
 const Navbar = ({
     user,
@@ -14,7 +13,7 @@ const Navbar = ({
         await axios.delete("http://localhost:1337/api/sessions", {
             withCredentials: true,
         });
-        return getCurrentUser(setUser);
+        setUser(null);
     };
 
     return (

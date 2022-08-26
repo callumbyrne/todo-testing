@@ -5,7 +5,6 @@ import { ErrorMessage } from "@hookform/error-message";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import getCurrentUser from "../utils/getCurrentUser";
 import { User } from "../typeings";
 
 export const createSessionSchema = object({
@@ -34,10 +33,14 @@ const Login = ({
 
     const onSubmit = async (values: CreateSessionInput) => {
         try {
-            await axios.post("http://localhost:1337/api/sessions", values, {
-                withCredentials: true,
-            });
-            getCurrentUser(setUser);
+            const { data } = await axios.post(
+                "http://localhost:1337/api/sessions",
+                values,
+                {
+                    withCredentials: true,
+                }
+            );
+            setUser(data);
             navigate("/", { replace: true });
         } catch (error: any) {
             setLoginError(error.message);
