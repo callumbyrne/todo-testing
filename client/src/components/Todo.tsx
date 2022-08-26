@@ -3,7 +3,6 @@ import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon as CheckCircleIconSolid } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import axios from "axios";
-import getCurrentUser from "../utils/getCurrentUser";
 
 interface TodoProps {
     todo: ITodo;

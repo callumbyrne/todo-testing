@@ -4,8 +4,7 @@ import { object, string, TypeOf } from "zod";
 import axios from "axios";
 import { ErrorMessage } from "@hookform/error-message";
 import { useState } from "react";
-import getCurrentUser from "../utils/getCurrentUser";
-import { ITodo, User } from "../typeings";
+import { ITodo } from "../typeings";
 
 const createTodoSchema = object({
     content: string().min(1, { message: "Cannot be empty" }),
