@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
@@ -6,13 +6,15 @@ import SignUp from "./pages/SignUp";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { User } from "./typeings";
-import getCurrentUser from "./utils/getCurrentUser";
 
 function App() {
     const [user, setUser] = useState<User | null>(null);
     useEffect(() => {
         const getUser = async () => {
-            setUser(await getCurrentUser());
+            const { data } = await axios.get("http://localhost:1337/api/me", {
+                withCredentials: true,
+            });
+            setUser(data);
         };
         getUser();
     }, []);
