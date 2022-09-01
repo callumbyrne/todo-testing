@@ -1,4 +1,4 @@
-import { ITodo, User } from "../typeings";
+import { ITodo } from "../typeings";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon as CheckCircleIconSolid } from "@heroicons/react/24/solid";
 import { useState } from "react";
