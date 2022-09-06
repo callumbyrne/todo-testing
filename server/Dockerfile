@@ -12,6 +12,8 @@ ADD ./ /src
 
 RUN rm -rf src/node_modules && cp -a /tmp/node_modules /src/
 
+ADD /dist /src/build/src
+
 WORKDIR /src
 
 RUN yarn build
