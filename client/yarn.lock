@@ -252,6 +252,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/linux-loong64/-/linux-loong64-0.14.54.tgz#de2a4be678bd4d0d1ffbb86e6de779cde5999028"
   integrity sha512-bZBrLAIX1kpWelV0XemxBZllyRmM6vgFQQG2GdNb+r3Fkp0FOh1NJSvekXDs7jq70k4euu1cryLMfU+mTXlEpw==
 
+"@heroicons/react@^2.0.10":
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/@heroicons/react/-/react-2.0.10.tgz#191a305aa2dc2271903f027c9f4700ca3dfa9e7b"
+  integrity sha512-Ufr+pgAElNiRCSklnHGOR10bXb02BLlosvbDK7sCRUMOcQ3R/HCXTfXs4BUkYZ4dKpx6l5dUD06VSW1dTpTEDw==
+
 "@hookform/error-message@^2.0.0":
   version "2.0.0"
   resolved "https://registry.npmjs.org/@hookform/error-message/-/error-message-2.0.0.tgz"

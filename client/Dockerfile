@@ -4,7 +4,7 @@ ADD package.json /tmp/package.json
 
 ADD yarn.lock /tmp/yarn.lock
 
-RUN rm -rf build
+RUN rm -rf dist
 
 RUN cd /tmp && yarn install
 
