@@ -1,2 +1,5 @@
-todos.callumbyrne.com { reverse_proxy todos:1337 { header_down
-Strict_Transport_Security max_age=31536000; } }
+todos.callumbyrne.com {
+   reverse_proxy todos:1337 {
+      header_down Strict_Transport_Security max_age=31536000;
+   }
+}
