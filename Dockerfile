@@ -16,10 +16,10 @@ ADD /client /tmp/client
 
 RUN cd /tmp/client && yarn build
 
-RUN cp -a /tmp/client/dist /src/src
-
 WORKDIR /src
 
 RUN yarn build
+
+RUN cp -a /tmp/client/dist /src/build/src/
 
 CMD ["node", "build/src/index.js"]
