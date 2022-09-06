@@ -1,21 +1,11 @@
 version: "3.8"
 services:
-  # client:
-  #   container_name: client
-  #   restart: unless-stopped
-  #   environment:
-  #     - NODE_ENV=production
-  #   build:
-  #     context: ./client
-  #   ports:
-  #     - 8080:8080
-
-  server:
-    container_name: server
+  todo:
+    container_name: todo
     restart: unless-stopped
     environment:
       - NODE_ENV=production
     build:
-      context: ./server
+      context: ./
     ports:
       - 1337:1337
