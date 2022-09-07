@@ -4,6 +4,7 @@ import TodoForm from "../components/TodoForm";
 import Todo from "../components/Todo";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Header from "../components/Header";
 
 interface HomeProps {
   user: User | null;
@@ -42,9 +43,7 @@ const Home = ({ user }: HomeProps) => {
 
   return (
     <div className="flex items-center flex-col">
-      <h2 className="max-w-5xl my-10 font-bold text-2xl">
-        Welcome, {user.name}
-      </h2>
+      <Header user={user} />
       <TodoForm setTodos={setTodos} />
       <div className="todos-container max-w-5xl w-full border rounded-lg p-10">
         {todos.map((todo) => (

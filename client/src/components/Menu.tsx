@@ -15,10 +15,10 @@ interface Props {
 
 const Menu = ({ setIsOpen, user, handleLogout }: Props) => {
   return (
-    <nav className="fixed inset-0 z-20 flex w-full flex-col bg-white">
+    <nav className="fixed inset-0 z-20 flex w-full flex-col bg-[#5352ed]">
       <div className="w-full relative py-5">
         <button onClick={() => setIsOpen(false)} className="float-right mr-5">
-          <XMarkIcon className="text-black h-8 w-8" />
+          <XMarkIcon className="text-white h-8 w-8" />
         </button>
       </div>
 
@@ -26,10 +26,10 @@ const Menu = ({ setIsOpen, user, handleLogout }: Props) => {
         <div className="mx-10">
           <button
             onClick={handleLogout}
-            className="font-bold text-2xl flex justify-center items-center"
+            className="font-bold text-2xl flex items-center underline text-white"
           >
             Logout{" "}
-            <ArrowRightOnRectangleIcon className="text-black h-6 w-6 ml-2" />
+            <ArrowRightOnRectangleIcon className="text-white h-6 w-6 ml-2" />
           </button>
         </div>
       ) : (
@@ -37,18 +37,18 @@ const Menu = ({ setIsOpen, user, handleLogout }: Props) => {
           <Link to={"/login"}>
             <button
               onClick={() => setIsOpen(false)}
-              className="ml-5 mb-5 font-bold text-2xl flex items-center underline"
+              className="ml-5 mb-5 font-bold text-2xl flex items-center underline text-white"
             >
               Login{" "}
-              <ArrowLeftOnRectangleIcon className="text-black h-6 w-6 ml-2" />
+              <ArrowLeftOnRectangleIcon className="text-white h-6 w-6 ml-2" />
             </button>
           </Link>
           <Link to={"/signup"}>
             <button
               onClick={() => setIsOpen(false)}
-              className="ml-5 font-bold text-2xl flex items-center underline"
+              className="ml-5 font-bold text-2xl flex items-center underline text-white"
             >
-              Sign Up <UserPlusIcon className="text-black h-6 w-6 ml-2" />
+              Sign Up <UserPlusIcon className="text-white h-6 w-6 ml-2" />
             </button>
           </Link>
         </div>

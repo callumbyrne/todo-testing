@@ -22,17 +22,13 @@ const Navbar = ({
   };
 
   return (
-    <div className="flex justify-center border-y">
-      <nav className="max-w-5xl w-full py-5 flex justify-center items-center relative">
-        <Link to={"/"}>
-          <div className="font-bold text-3xl tracking-wide">Todo App</div>
-        </Link>
-
+    <div className="flex justify-center bg-[#5352ed] w-full">
+      <nav className="max-w-5xl w-full py-5">
         <button
-          className="absolute right-0 md:hidden mr-5"
+          className="float-right md:hidden mr-5"
           onClick={() => setIsOpen(true)}
         >
-          <Bars3Icon className="text-black h-8 w-8" />
+          <Bars3Icon className="text-white h-8 w-8" />
         </button>
 
         {user ? (
