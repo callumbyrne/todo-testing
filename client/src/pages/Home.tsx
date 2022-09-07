@@ -42,10 +42,10 @@ const Home = ({ user }: HomeProps) => {
   }
 
   return (
-    <div className="flex items-center flex-col">
+    <div className="flex items-center flex-col bg-[#5352ed] h-full">
       <Header user={user} />
       <TodoForm setTodos={setTodos} />
-      <div className="todos-container max-w-5xl w-full border rounded-lg p-10">
+      <div className="todos-container max-w-5xl w-full h-full p-5 bg-[#323442]">
         {todos.map((todo) => (
           <Todo todo={todo} key={todo._id} setTodos={setTodos} />
         ))}

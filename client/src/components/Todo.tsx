@@ -1,6 +1,9 @@
 import { ITodo } from "../typeings";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
-import { CheckCircleIcon as CheckCircleIconSolid } from "@heroicons/react/24/solid";
+import {
+  CheckCircleIcon as CheckCircleIconSolid,
+  TrashIcon,
+} from "@heroicons/react/24/solid";
 import { useState } from "react";
 import axios from "axios";
 
@@ -30,7 +33,7 @@ const Todo = ({ todo, setTodos }: TodoProps) => {
   };
 
   return (
-    <div className="container border flex justify-between mb-4 px-5 py-3 rounded-lg">
+    <div className="container flex justify-between mb-4 py-2 border-b text-white">
       <div className="Left flex items-center">
         <div className="completed mr-3">
           {completed ? (
@@ -53,11 +56,8 @@ const Todo = ({ todo, setTodos }: TodoProps) => {
           <p>{date}</p>
         </div>
         <div className="delete">
-          <button
-            className="py-1 px-3 bg-red-500 text-white font-bold rounded-md"
-            onClick={deleteHandler}
-          >
-            Delete
+          <button onClick={deleteHandler}>
+            <TrashIcon className="h-6 w-6 text-red-500 cursor-pointer" />
           </button>
         </div>
       </div>
