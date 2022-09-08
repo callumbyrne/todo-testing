@@ -15,7 +15,7 @@ interface TodoProps {
 const Todo = ({ todo, setTodos }: TodoProps) => {
   const [completed, setCompleted] = useState(todo.completed);
 
-  const date = String(todo.createdAt).slice(0, 10);
+  const date = new Date(todo.createdAt).toLocaleDateString();
 
   const completedHandler = async () => {
     let update = { completed: !completed };
@@ -48,11 +48,11 @@ const Todo = ({ todo, setTodos }: TodoProps) => {
             />
           )}
         </div>
-        <div className="content">{todo.content}</div>
+        <div className="content break-all">{todo.content}</div>
       </div>
 
-      <div className="Right flex">
-        <div className="flex items-center mr-10">
+      <div className="Right flex min-w-fit items-center">
+        <div className="mx-6">
           <p>{date}</p>
         </div>
         <div className="delete">
