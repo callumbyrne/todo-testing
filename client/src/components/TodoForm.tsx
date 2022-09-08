@@ -41,7 +41,7 @@ const TodoForm = ({ setTodos }: TodoFormProps) => {
   };
   return (
     <div className="flex w-full pb-3 bg-[#323442] rounded-t-3xl">
-      <div className="form-container mx-5 mt-5 w-full">
+      <div className="form-container mx-5 mt-5 w-full md:mx-10">
         <p>{todoError}</p>
         <form
           className="flex justify-between"

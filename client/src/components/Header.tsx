@@ -7,7 +7,7 @@ const Header = ({ user }: { user: User }) => {
       <h1 className="font-bold text-5xl tracking-wide text-white w-full text-center my-16">
         Todos
       </h1>
-      <h2 className="my-10 ml-5 font-bold text-2xl text-white tracking-wide">
+      <h2 className="my-10 ml-5 font-bold text-2xl text-white tracking-wide md:ml-10">
         Hey there, {user.name}!
       </h2>
       <img

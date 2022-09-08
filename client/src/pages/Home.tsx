@@ -47,7 +47,7 @@ const Home = ({ user }: HomeProps) => {
     <div className="flex items-center flex-col bg-[#5352ed] h-full w-full">
       <Header user={user} />
       <TodoForm setTodos={setTodos} />
-      <div className="todos-container w-full h-full p-5 bg-[#323442]">
+      <div className="todos-container w-full h-full px-5 py-5 bg-[#323442] md:px-10">
         {reversedTodos.map((todo) => (
           <Todo todo={todo} key={todo._id} setTodos={setTodos} />
         ))}
