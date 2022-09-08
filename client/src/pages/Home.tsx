@@ -22,6 +22,8 @@ const Home = ({ user }: HomeProps) => {
     getTodos();
   }, []);
 
+  const reversedTodos = todos.slice(0).reverse();
+
   if (!user) {
     return (
       <div className="flex justify-center">
@@ -46,7 +48,7 @@ const Home = ({ user }: HomeProps) => {
       <Header user={user} />
       <TodoForm setTodos={setTodos} />
       <div className="todos-container w-full h-full p-5 bg-[#323442]">
-        {todos.map((todo) => (
+        {reversedTodos.map((todo) => (
           <Todo todo={todo} key={todo._id} setTodos={setTodos} />
         ))}
       </div>
