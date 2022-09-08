@@ -32,23 +32,23 @@ const Navbar = ({
         </button>
 
         {user ? (
-          <div className="absolute right-0 hidden lg:inline-block">
+          <div className="float-right mr-10 hidden lg:inline-block">
             <button
               onClick={handleLogout}
-              className="py-2 px-10 text-red-500 font-bold border border-red-500 rounded-md"
+              className="py-2 px-10 text-white font-bold border border-white rounded-md"
             >
               Logout
             </button>
           </div>
         ) : (
-          <div className="absolute right-0 hidden lg:inline-block">
+          <div className="float-right mr-10 hidden lg:inline-block">
             <Link to={"/login"}>
               <button className="py-2 px-10 bg-blue-500 text-white font-bold rounded-md">
                 Login
               </button>
             </Link>
             <Link to={"/signup"}>
-              <button className="py-2 px-10 text-blue-500 border border-blue-500 font-bold rounded-md ml-5">
+              <button className="py-2 px-10 text-white border border-white font-bold rounded-md ml-5">
                 Sign Up
               </button>
             </Link>
