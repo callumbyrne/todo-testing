@@ -5,6 +5,7 @@ import {
   ArrowRightOnRectangleIcon,
   ArrowLeftOnRectangleIcon,
   UserPlusIcon,
+  HomeIcon,
 } from "@heroicons/react/24/outline";
 
 interface Props {
@@ -22,37 +23,47 @@ const Menu = ({ setIsOpen, user, handleLogout }: Props) => {
         </button>
       </div>
 
-      {user ? (
-        <div className="mx-10">
+      <div className="flex flex-col mx-10 text-3xl text-white">
+        <Link to={"/"}>
           <button
-            onClick={handleLogout}
-            className="font-bold text-2xl flex items-center underline text-white"
+            onClick={() => setIsOpen(false)}
+            className="ml-5 mb-7 font-bold flex items-center"
           >
-            Logout{" "}
-            <ArrowRightOnRectangleIcon className="text-white h-6 w-6 ml-2" />
+            Home <HomeIcon className=" h-7 w-7 ml-3" />
           </button>
-        </div>
-      ) : (
-        <div className="flex flex-col mx-10">
-          <Link to={"/login"}>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="ml-5 mb-5 font-bold text-2xl flex items-center underline text-white"
-            >
-              Login{" "}
-              <ArrowLeftOnRectangleIcon className="text-white h-6 w-6 ml-2" />
-            </button>
-          </Link>
-          <Link to={"/signup"}>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="ml-5 font-bold text-2xl flex items-center underline text-white"
-            >
-              Sign Up <UserPlusIcon className="text-white h-6 w-6 ml-2" />
-            </button>
-          </Link>
-        </div>
-      )}
+        </Link>
+
+        {user ? (
+          <button
+            onClick={() => {
+              handleLogout();
+              setIsOpen(false);
+            }}
+            className="ml-5 font-bold flex items-center"
+          >
+            Logout <ArrowRightOnRectangleIcon className="h-7 w-7 ml-3" />
+          </button>
+        ) : (
+          <>
+            <Link to={"/login"}>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="ml-5 mb-7 font-bold flex items-center"
+              >
+                Login <ArrowLeftOnRectangleIcon className="h-7 w-7 ml-3" />
+              </button>
+            </Link>
+            <Link to={"/signup"}>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="ml-5 font-bold flex items-center"
+              >
+                Sign Up <UserPlusIcon className="h-7 w-7 ml-3" />
+              </button>
+            </Link>
+          </>
+        )}
+      </div>
     </nav>
   );
 };
