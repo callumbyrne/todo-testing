@@ -34,7 +34,10 @@ const Login = ({
 
   const onSubmit = async (values: CreateSessionInput) => {
     try {
-      const { data } = await axios.post("/api/sessions", values, {
+      await axios.post("/api/sessions", values, {
+        withCredentials: true,
+      });
+      const { data } = await axios.get("/api/me", {
         withCredentials: true,
       });
       setUser(data);
@@ -61,7 +64,7 @@ const Login = ({
                   id="email"
                   placeholder="hello@example.com"
                   autoComplete="username"
-                  className="border rounded-md py-2 px-1"
+                  className="border rounded-md py-2 px-1 text-black"
                   {...register("email")}
                 />
                 <ErrorMessage errors={errors} name="email" as="p" />
@@ -76,7 +79,7 @@ const Login = ({
                   id="password"
                   placeholder="********"
                   autoComplete="password"
-                  className="border rounded-md py-2 px-1"
+                  className="border rounded-md py-2 px-1 text-black"
                   {...register("password")}
                 />
                 <ErrorMessage errors={errors} name="password" as="p" />

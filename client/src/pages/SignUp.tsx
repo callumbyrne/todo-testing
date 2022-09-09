@@ -67,7 +67,7 @@ const SignUp = () => {
                   id="name"
                   placeholder="John Doe"
                   autoComplete="name"
-                  className="border rounded-md py-2 px-1"
+                  className="border rounded-md py-2 px-1 text-black"
                   {...register("name")}
                 />
                 <ErrorMessage errors={errors} name="name" as="p" />
@@ -82,7 +82,7 @@ const SignUp = () => {
                   id="email"
                   placeholder="hello@example.com"
                   autoComplete="username"
-                  className="border rounded-md py-2 px-1"
+                  className="border rounded-md py-2 px-1 text-black"
                   {...register("email")}
                 />
                 <ErrorMessage errors={errors} name="email" as="p" />
@@ -97,7 +97,7 @@ const SignUp = () => {
                   id="password"
                   placeholder="********"
                   autoComplete="password"
-                  className="border rounded-md py-2 px-1"
+                  className="border rounded-md py-2 px-1 text-black"
                   {...register("password")}
                 />
                 <ErrorMessage
@@ -120,7 +120,7 @@ const SignUp = () => {
                   id="passwordConfirmation"
                   placeholder="********"
                   autoComplete="password"
-                  className="border rounded-md py-2 px-1"
+                  className="border rounded-md py-2 px-1 text-black"
                   {...register("passwordConfirmation")}
                 />
                 <ErrorMessage
