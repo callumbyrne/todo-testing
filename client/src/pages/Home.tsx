@@ -26,18 +26,23 @@ const Home = ({ user }: HomeProps) => {
 
   if (!user) {
     return (
-      <div className="flex justify-center">
-        <div className="container mt-10 max-w-lg w-full border rounded-lg p-10 flex justify-center">
-          <p className="text-lg">
-            <Link to={"/login"} className="underline">
-              Login
-            </Link>{" "}
-            or{" "}
-            <Link to={"/signup"} className="underline">
-              Sign Up
-            </Link>{" "}
-            to see your todos!
-          </p>
+      <div className="flex justify-center h-full bg-[#323442]">
+        <div className="w-full h-full flex flex-col lg:max-w-4xl">
+          <Header user={user} title="Todos" />
+          <div className="flex-grow flex items-center flex-col px-5">
+            <div className="container mt-10 max-w-lg border rounded-lg px-3 py-5 flex justify-center">
+              <p className="text-lg text-white font-semibold">
+                <Link to={"/login"} className="underline">
+                  Login
+                </Link>{" "}
+                or{" "}
+                <Link to={"/signup"} className="underline">
+                  Sign Up
+                </Link>{" "}
+                to see your todos!
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -46,7 +51,7 @@ const Home = ({ user }: HomeProps) => {
   return (
     <div className="flex items-center flex-col bg-[#5352ed] h-full w-full">
       <div className="w-full h-full flex flex-col lg:max-w-4xl">
-        <Header user={user} />
+        <Header user={user} title="Todos" />
         <TodoForm setTodos={setTodos} />
         <div className="todos-container w-full flex-grow px-5 py-5 bg-[#323442] md:px-10">
           {reversedTodos.map((todo) => (

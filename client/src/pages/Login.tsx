@@ -6,6 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { User } from "../typeings";
+import Header from "../components/Header";
 
 export const createSessionSchema = object({
   email: string().min(1, { message: "Email is required" }),
