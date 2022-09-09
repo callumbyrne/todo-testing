@@ -1,5 +1,5 @@
 import { User } from "../typeings";
-import headerImage from "../../public/Saly-16.png";
+import headerImage from "/Saly-16.png";
 
 const Header = ({ user, title }: { user: User | null; title: string }) => {
   return (
