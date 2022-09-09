@@ -5,6 +5,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 const createUserSchema = object({
   name: string().min(1, { message: "Name is required" }),
@@ -50,88 +51,96 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex items-center flex-col">
-      <div className="max-w-5xl mt-10 mb-3 font-bold text-2xl">Sign Up</div>
-      <div className="form-container max-w-lg w-full border rounded-lg py-10 px-20">
-        <p>{signUpError}</p>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-element flex flex-col mb-6">
-            <label htmlFor="name" className="font-bold text-xl mb-1">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              placeholder="John Doe"
-              autoComplete="name"
-              className="border rounded-md py-2 px-1"
-              {...register("name")}
-            />
-            <ErrorMessage errors={errors} name="name" as="p" />
-          </div>
+    <div className="flex justify-center bg-[#5352ed] text-white h-full">
+      <div className="w-full h-full flex flex-col md:max-w-4xl">
+        <Header title="Sign up" user={null} />
+        <div className="bg-[#323442] flex-grow flex items-center flex-col px-5 rounded-t-3xl">
+          <div className="form-container max-w-lg w-full py-10 px-20">
+            <p>{signUpError}</p>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="form-element flex flex-col mb-6">
+                <label htmlFor="name" className="font-bold text-xl mb-1">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="John Doe"
+                  autoComplete="name"
+                  className="border rounded-md py-2 px-1"
+                  {...register("name")}
+                />
+                <ErrorMessage errors={errors} name="name" as="p" />
+              </div>
 
-          <div className="form-element flex flex-col mb-6">
-            <label htmlFor="email" className="font-bold text-xl mb-1">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              placeholder="hello@example.com"
-              autoComplete="username"
-              className="border rounded-md py-2 px-1"
-              {...register("email")}
-            />
-            <ErrorMessage errors={errors} name="email" as="p" />
-          </div>
+              <div className="form-element flex flex-col mb-6">
+                <label htmlFor="email" className="font-bold text-xl mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="hello@example.com"
+                  autoComplete="username"
+                  className="border rounded-md py-2 px-1"
+                  {...register("email")}
+                />
+                <ErrorMessage errors={errors} name="email" as="p" />
+              </div>
 
-          <div className="form-element flex flex-col mb-6">
-            <label htmlFor="password" className="font-bold text-xl mb-1">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="********"
-              autoComplete="password"
-              className="border rounded-md py-2 px-1"
-              {...register("password")}
-            />
-            <ErrorMessage
-              errors={errors}
-              name="password"
-              as="p"
-              className="flex flex-wrap"
-            />
-          </div>
+              <div className="form-element flex flex-col mb-6">
+                <label htmlFor="password" className="font-bold text-xl mb-1">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="********"
+                  autoComplete="password"
+                  className="border rounded-md py-2 px-1"
+                  {...register("password")}
+                />
+                <ErrorMessage
+                  errors={errors}
+                  name="password"
+                  as="p"
+                  className="flex flex-wrap"
+                />
+              </div>
 
-          <div className="form-element flex flex-col mb-6">
-            <label
-              htmlFor="passwordConfirmation"
-              className="font-bold text-xl mb-1"
-            >
-              Confirm password
-            </label>
-            <input
-              type="password"
-              id="passwordConfirmation"
-              placeholder="********"
-              autoComplete="password"
-              className="border rounded-md py-2 px-1"
-              {...register("passwordConfirmation")}
-            />
-            <ErrorMessage errors={errors} name="passwordConfirmation" as="p" />
-          </div>
+              <div className="form-element flex flex-col mb-6">
+                <label
+                  htmlFor="passwordConfirmation"
+                  className="font-bold text-xl mb-1"
+                >
+                  Confirm password
+                </label>
+                <input
+                  type="password"
+                  id="passwordConfirmation"
+                  placeholder="********"
+                  autoComplete="password"
+                  className="border rounded-md py-2 px-1"
+                  {...register("passwordConfirmation")}
+                />
+                <ErrorMessage
+                  errors={errors}
+                  name="passwordConfirmation"
+                  as="p"
+                />
+              </div>
 
-          <div className="flex justify-center">
-            <button
-              type="submit"
-              className="mb-6 py-2 px-10 bg-blue-500 text-white font-bold rounded-md"
-            >
-              Sign Up
-            </button>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="mb-6 py-2 px-10 bg-blue-500 text-white font-bold rounded-md"
+                >
+                  Sign Up
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
