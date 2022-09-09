@@ -3,7 +3,7 @@ import headerImage from "../../public/Saly-16.png";
 
 const Header = ({ user, title }: { user: User | null; title: string }) => {
   return (
-    <div className="bg-[#5352ed] w-full relative">
+    <div className="bg-[#5352ed] w-full relative overflow-hidden">
       <h1 className="font-bold text-5xl tracking-wide text-white w-full text-center my-16">
         {title}
       </h1>

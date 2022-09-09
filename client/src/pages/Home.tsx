@@ -26,11 +26,11 @@ const Home = ({ user }: HomeProps) => {
 
   if (!user) {
     return (
-      <div className="flex justify-center h-full bg-[#323442]">
-        <div className="w-full h-full flex flex-col lg:max-w-4xl">
+      <div className="flex justify-center h-full bg-[#5352ed]">
+        <div className="w-full h-full flex flex-col md:max-w-4xl">
           <Header user={user} title="Todos" />
-          <div className="flex-grow flex items-center flex-col px-5">
-            <div className="container mt-10 max-w-lg border rounded-lg px-3 py-5 flex justify-center">
+          <div className="bg-[#323442] flex-grow flex items-center flex-col px-5 rounded-t-3xl">
+            <div className="container mt-10 max-w-lg px-3 py-5 flex justify-center">
               <p className="text-lg text-white font-semibold">
                 <Link to={"/login"} className="underline">
                   Login

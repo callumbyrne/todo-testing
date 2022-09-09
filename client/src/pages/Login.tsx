@@ -45,50 +45,54 @@ const Login = ({
   };
 
   return (
-    <div className="flex items-center flex-col">
-      <h2 className="max-w-5xl mt-10 mb-3 font-bold text-2xl">Login</h2>
-      <div className="form-container max-w-lg w-full border rounded-lg p-10">
-        <p>{loginError}</p>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-element flex flex-col mb-6">
-            <label htmlFor="email" className="font-bold text-xl mb-1">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              placeholder="hello@example.com"
-              autoComplete="username"
-              className="border rounded-md py-2 px-1"
-              {...register("email")}
-            />
-            <ErrorMessage errors={errors} name="email" as="p" />
-          </div>
+    <div className="flex justify-center bg-[#5352ed] text-white h-full">
+      <div className="w-full h-full flex flex-col md:max-w-4xl">
+        <Header title="Login" user={null} />
+        <div className="bg-[#323442] flex-grow flex items-center flex-col px-5 rounded-t-3xl">
+          <div className="form-container max-w-lg w-full p-10 mt-10">
+            <p>{loginError}</p>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="form-element flex flex-col mb-6">
+                <label htmlFor="email" className="font-bold text-xl mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="hello@example.com"
+                  autoComplete="username"
+                  className="border rounded-md py-2 px-1"
+                  {...register("email")}
+                />
+                <ErrorMessage errors={errors} name="email" as="p" />
+              </div>
 
-          <div className="form-element flex flex-col mb-6">
-            <label htmlFor="password" className="font-bold text-xl mb-1">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="********"
-              autoComplete="password"
-              className="border rounded-md py-2 px-1"
-              {...register("password")}
-            />
-            <ErrorMessage errors={errors} name="password" as="p" />
-          </div>
+              <div className="form-element flex flex-col mb-6">
+                <label htmlFor="password" className="font-bold text-xl mb-1">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="********"
+                  autoComplete="password"
+                  className="border rounded-md py-2 px-1"
+                  {...register("password")}
+                />
+                <ErrorMessage errors={errors} name="password" as="p" />
+              </div>
 
-          <div className="flex justify-center">
-            <button
-              type="submit"
-              className="mb-6 py-2 px-10 bg-blue-500 text-white font-bold rounded-md"
-            >
-              Login
-            </button>
+              <div className="flex justify-center">
+                <button
+                  type="submit"
+                  className="mb-6 py-2 px-10 bg-blue-500 text-white font-bold rounded-md"
+                >
+                  Login
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
