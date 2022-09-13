@@ -33,7 +33,7 @@ const Todo = ({ todo, setTodos }: TodoProps) => {
   };
 
   return (
-    <div className="container flex justify-between mb-4 py-2 border-b text-white">
+    <div className="flex justify-between mb-4 py-2 border-b text-white">
       <div className="Left flex items-center">
         <div className="completed mr-3">
           {completed ? (
@@ -51,7 +51,7 @@ const Todo = ({ todo, setTodos }: TodoProps) => {
         <div className="content break-all">{todo.content}</div>
       </div>
 
-      <div className="Right flex min-w-fit items-center">
+      <div className="Right flex items-center">
         <div className="mx-6">
           <p>{date}</p>
         </div>

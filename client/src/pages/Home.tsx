@@ -49,11 +49,11 @@ const Home = ({ user }: HomeProps) => {
   }
 
   return (
-    <div className="flex items-center flex-col bg-[#5352ed] h-full w-full">
-      <div className="w-full h-full flex flex-col lg:max-w-4xl">
+    <div className="flex items-center flex-col bg-[#5352ed] w-full">
+      <div className="w-full min-h-screen flex flex-col lg:max-w-4xl">
         <Header user={user} title="Todos" />
         <TodoForm setTodos={setTodos} />
-        <div className="todos-container w-full flex-grow px-5 py-5 bg-[#323442] md:px-10">
+        <div className="todos-container flex-grow px-5 py-5 bg-[#323442] md:px-10">
           {reversedTodos.map((todo) => (
             <Todo todo={todo} key={todo._id} setTodos={setTodos} />
           ))}

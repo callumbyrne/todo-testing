@@ -3,7 +3,7 @@ import headerImage from "/Saly-16.webp";
 
 const Header = ({ user, title }: { user: User | null; title: string }) => {
   return (
-    <div className="bg-[#5352ed] w-full relative overflow-hidden">
+    <div className="bg-[#5352ed] w-full relative h-fit">
       <h1 className="font-bold text-5xl tracking-wide text-white w-full text-center my-16">
         {title}
       </h1>
@@ -19,7 +19,7 @@ const Header = ({ user, title }: { user: User | null; title: string }) => {
       <img
         src={headerImage}
         alt="img"
-        className="w-60 absolute -right-3 bottom-0"
+        className="w-60 absolute right-0 bottom-0 overflow-hidden"
       />
     </div>
   );
