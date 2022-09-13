@@ -8,9 +8,10 @@ import Header from "../components/Header";
 
 interface HomeProps {
   user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
-const Home = ({ user }: HomeProps) => {
+const Home = ({ user, setUser }: HomeProps) => {
   const [todos, setTodos] = useState<ITodo[]>([]);
 
   useEffect(() => {
@@ -24,13 +25,24 @@ const Home = ({ user }: HomeProps) => {
 
   const reversedTodos = todos.slice(0).reverse();
 
+  const loginDemo = async () => {
+    const values = { email: "demo@gmail.com", password: "password" };
+    await axios.post("/api/sessions", values, {
+      withCredentials: true,
+    });
+    const { data } = await axios.get("/api/me", {
+      withCredentials: true,
+    });
+    setUser(data);
+  };
+
   if (!user) {
     return (
       <div className="flex justify-center h-full bg-[#5352ed]">
         <div className="w-full h-full flex flex-col md:max-w-4xl">
           <Header user={user} title="Todos" />
           <div className="bg-[#323442] flex-grow flex items-center flex-col px-5 rounded-t-3xl">
-            <div className="container mt-10 max-w-lg px-3 py-5 flex justify-center">
+            <div className="container mt-10 max-w-lg px-3 py-5 flex flex-col items-center">
               <p className="text-lg text-white font-semibold">
                 <Link to={"/login"} className="underline">
                   Login
@@ -40,6 +52,12 @@ const Home = ({ user }: HomeProps) => {
                   Sign Up
                 </Link>{" "}
                 to see your todos!
+              </p>
+              <p
+                onClick={loginDemo}
+                className="text-lg text-white underline font-semibold mt-5"
+              >
+                Demo!
               </p>
             </div>
           </div>
