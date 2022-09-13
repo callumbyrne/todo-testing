@@ -6,6 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import { User } from "../typeings";
 
 const createUserSchema = object({
   name: string().min(1, { message: "Name is required" }),
@@ -20,7 +21,11 @@ const createUserSchema = object({
 
 export type CreateUserInput = TypeOf<typeof createUserSchema>;
 
-const SignUp = () => {
+interface SignUpProps {
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+}
+
+const SignUp = ({ setUser }: SignUpProps) => {
   const [signUpError, setSignUpError] = useState<string>("");
 
   const navigate = useNavigate();
@@ -38,6 +43,17 @@ const SignUp = () => {
       await axios.post("/api/users", values, {
         withCredentials: true,
       });
+      const loginValues = {
+        email: values.email,
+        password: values.password,
+      };
+      await axios.post("/api/sessions", loginValues, {
+        withCredentials: true,
+      });
+      const { data } = await axios.get("/api/me", {
+        withCredentials: true,
+      });
+      setUser(data);
       navigate("/", { replace: true });
     } catch (error: any) {
       if (String(error.response.status) === "409") {
