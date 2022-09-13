@@ -44,28 +44,35 @@ const TodoForm = ({ setTodos }: TodoFormProps) => {
       <div className="form-container mx-5 mt-5 w-full md:mx-10">
         <p>{todoError}</p>
         <form
-          className="flex justify-between"
+          className="flex justify-between flex-col"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="form-element flex items-center w-full mr-3">
-            <input
-              type="text"
-              id="content"
-              placeholder="New todo"
-              className="border w-full h-full rounded-lg pl-3"
-              {...register("content")}
-            />
-            <ErrorMessage errors={errors} name="content" as="p" />
-          </div>
+          <div className="flex">
+            <div className="form-element flex items-center w-full mr-3">
+              <input
+                type="text"
+                id="content"
+                placeholder="New todo"
+                className="border w-full h-full rounded-lg pl-3"
+                {...register("content")}
+              />
+            </div>
 
-          <div className="flex items-center">
-            <button
-              type="submit"
-              className="py-2 px-5 bg-blue-500 text-white font-bold rounded-md"
-            >
-              Add
-            </button>
+            <div className="flex items-center">
+              <button
+                type="submit"
+                className="py-2 px-5 bg-blue-500 text-white font-bold rounded-md"
+              >
+                Add
+              </button>
+            </div>
           </div>
+          <ErrorMessage
+            errors={errors}
+            name="content"
+            as="p"
+            className="text-white "
+          />
         </form>
       </div>
     </div>
